@@ -1,0 +1,11 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!terraform.tfvars.example
+terraform/*.zip
+dashboard/config.js
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store

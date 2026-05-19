@@ -1,0 +1,47 @@
+C4Deployment
+title Automatische E-Mail-Kategorisierung - Deployment Übersicht
+
+Deployment_Node(sender_node, "Externer Absender", "SMTP") {
+  Container(sender_mail, "E-Mail", "Mail Client", "Eingehende Nachricht")
+}
+
+Deployment_Node(aws, "AWS Account", "eu-central-1") {
+  Deployment_Node(inbound, "Eingang", "SES / S3") {
+    Container(ses, "SES", "Receipt Rule", "Optional für echte E-Mails")
+    ContainerDb(raw_bucket, "Raw-E-Mails", "S3", "Privat, KMS, Lifecycle")
+  }
+
+  Deployment_Node(processing, "Verarbeitung", "Lambda / Comprehend") {
+    Container(classifier, "Classifier", "Lambda", "Parst und klassifiziert")
+    Container(comprehend, "NLP", "Comprehend", "Sprache, Sentiment, Key Phrases")
+  }
+
+  Deployment_Node(data, "Daten", "DynamoDB") {
+    ContainerDb(metadata, "Metadaten", "DynamoDB", "Kategorie, Dringlichkeit, Vorschau")
+  }
+
+  Deployment_Node(access, "Zugriff", "API / Dashboard") {
+    Container(api, "API", "API Gateway + Lambda", "Lesen und Löschen")
+    Container(dashboard, "Dashboard", "CloudFront + S3", "HTTPS-Oberfläche")
+  }
+
+  Deployment_Node(ops, "Querschnitt", "Terraform / IAM / KMS / CloudWatch") {
+    Container(ops_note, "Deployment & Betrieb", "IaC + Security", "Terraform, Rollen, Verschlüsselung, Logs")
+  }
+}
+
+Deployment_Node(user_device, "Support-Mitarbeiter/in", "Browser") {
+  Container(browser, "Browser", "HTTPS", "Nutzt Dashboard")
+}
+
+Rel(sender_mail, ses, "sendet", "SMTP")
+Rel(ses, raw_bucket, "speichert", "S3")
+Rel(raw_bucket, classifier, "triggert", "S3 Event")
+Rel(classifier, comprehend, "analysiert", "AWS SDK")
+Rel(classifier, metadata, "speichert", "DynamoDB")
+
+Rel(browser, dashboard, "öffnet", "HTTPS")
+Rel(dashboard, api, "ruft API auf", "HTTPS")
+Rel(api, metadata, "liest/löscht", "DynamoDB")
+
+UpdateLayoutConfig($c4ShapeInRow="2", $c4BoundaryInRow="2")

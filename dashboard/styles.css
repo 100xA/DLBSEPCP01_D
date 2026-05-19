@@ -1,0 +1,180 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px;
+    color: #111;
+    background: #fff;
+    font-family:
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+    line-height: 1.4;
+}
+
+h1,
+h2,
+p {
+    margin: 0;
+}
+
+.topbar,
+.panelHeader,
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.topbar,
+.summary {
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #ccc;
+}
+
+.eyebrow,
+#statusText,
+.meta,
+dt {
+    color: #666;
+}
+
+.eyebrow {
+    margin-bottom: 4px;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+button,
+select {
+    padding: 6px 10px;
+    border: 1px solid #999;
+    background: #fff;
+    color: #111;
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.5;
+}
+
+.danger,
+.badge.high {
+    color: #a00;
+}
+
+.summary {
+    display: flex;
+    gap: 28px;
+}
+
+.summary span {
+    display: block;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.workspace {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+}
+
+.tablePanel,
+.detailPanel {
+    border: 1px solid #ccc;
+}
+
+.panelHeader,
+dl {
+    padding: 12px;
+}
+
+.panelHeader {
+    border-bottom: 1px solid #ccc;
+}
+
+.tableWrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+tbody tr {
+    cursor: pointer;
+}
+
+tbody tr:hover,
+tbody tr.selected {
+    background: #f2f2f2;
+}
+
+.subject,
+.badge {
+    font-weight: 650;
+}
+
+.badge.medium {
+    color: #8a5a00;
+}
+
+.badge.low {
+    color: #176b3a;
+}
+
+dl {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 8px 12px;
+    margin: 0;
+}
+
+dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 800px) {
+    body {
+        padding: 16px;
+    }
+
+    .topbar,
+    .summary,
+    .workspace {
+        display: block;
+    }
+
+    .actions,
+    .summary article,
+    .tablePanel {
+        margin-bottom: 16px;
+    }
+}

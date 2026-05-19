@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="de">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>E-Mail-Kategorisierung</title>
+        <link rel="stylesheet" href="styles.css" />
+        <script src="config.js"></script>
+    </head>
+    <body>
+        <header class="topbar">
+            <div>
+                <p class="eyebrow">Cloud Programming Finale</p>
+                <h1>Automatische E-Mail-Kategorisierung</h1>
+            </div>
+            <div class="actions">
+                <select id="limitSelect" aria-label="Anzahl der E-Mails">
+                    <option value="25">25</option>
+                    <option value="50" selected>50</option>
+                    <option value="100">100</option>
+                </select>
+                <button
+                    id="refreshButton"
+                    type="button"
+                    title="Daten neu laden"
+                >
+                    Aktualisieren
+                </button>
+            </div>
+        </header>
+
+        <main class="layout">
+            <section class="summary" aria-label="Kennzahlen">
+                <article>
+                    <span id="totalCount">0</span>
+                    <p>Klassifizierte E-Mails</p>
+                </article>
+                <article>
+                    <span id="highCount">0</span>
+                    <p>Hohe Dringlichkeit</p>
+                </article>
+                <article>
+                    <span id="categoryCount">0</span>
+                    <p>Themenbereiche</p>
+                </article>
+            </section>
+
+            <section class="workspace">
+                <div class="tablePanel">
+                    <div class="panelHeader">
+                        <h2>Posteingang</h2>
+                        <span id="statusText">Bereit</span>
+                    </div>
+                    <div class="tableWrap">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Betreff</th>
+                                    <th>Kategorie</th>
+                                    <th>Dringlichkeit</th>
+                                    <th>Eingang</th>
+                                </tr>
+                            </thead>
+                            <tbody id="emailRows"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <aside class="detailPanel" aria-label="E-Mail-Details">
+                    <div class="panelHeader">
+                        <h2>Details</h2>
+                        <button
+                            id="deleteButton"
+                            class="danger"
+                            type="button"
+                            disabled
+                            title="Datensatz löschen"
+                        >
+                            Löschen
+                        </button>
+                    </div>
+                    <dl id="detailList">
+                        <dt>Status</dt>
+                        <dd>Keine E-Mail ausgewählt</dd>
+                    </dl>
+                </aside>
+            </section>
+        </main>
+
+        <script src="app.js"></script>
+    </body>
+</html>

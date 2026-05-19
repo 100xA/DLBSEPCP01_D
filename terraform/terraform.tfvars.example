@@ -1,0 +1,15 @@
+aws_region               = "eu-central-1"
+name_prefix              = "email-classifier-p2"
+tenant_id                = "support-team"
+raw_email_retention_days = 30
+
+api_allowed_origins = ["*"]
+
+enable_ses_receiving   = false
+activate_ses_rule_set  = false
+ses_domain             = "example.com"
+email_recipients       = ["support@example.com"]
+
+tags = {
+  Owner       = "Jan Biernacki"
+}
